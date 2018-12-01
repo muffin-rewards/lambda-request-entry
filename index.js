@@ -12,15 +12,13 @@ exports.handler = (event, _, callback) => {
         message: 'Unauthorized'
       })
   })
-    .then(() => {
-      sns.publish({
-        Message: JSON.stringify({
-          token: headers.Authorization.replace('Bearer ', ''),
-          reward: pathParameters.id
-        }),
-        TopicArn: process.env.SNS_TOPIC
-      }).promise()
-    })
+    .then(() => sns.publish({
+      Message: JSON.stringify({
+        token: headers.Authorization.replace('Bearer ', ''),
+        reward: pathParameters.id
+      }),
+      TopicArn: process.env.SNS_TOPIC
+    }).promise())
     .then(() => ({ status: 202, body: { status: 202 } }))
     .catch((error = {}) => {
       return {
