@@ -1,0 +1,8 @@
+{
+  "lambda": {
+    "role": "arn:aws:iam::490542543401:role/SNSFullAccess",
+    "name": "prod-request-entry",
+    "region": "eu-west-1",
+    "sharedRole": true
+  }
+}
